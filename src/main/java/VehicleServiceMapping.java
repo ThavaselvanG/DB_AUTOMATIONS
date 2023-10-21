@@ -17,10 +17,15 @@ public class VehicleServiceMapping {
     private static final String TAG = "VehicleServiceMapping- ";
 
     public static void main(String[] args) throws IOException {
+        int count = 0;
         StringBuilder stringBuilder = new StringBuilder(INSERT_QUERY);
         try (Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH));
              CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);) {
             for (CSVRecord csvRecord : csvParser) {
+                if (count == 0) {
+                    count++;
+                    continue;
+                }
                 String id = csvRecord.get(0);
                 String modelCode = csvRecord.get(1);
                 String serviceId = csvRecord.get(2);
