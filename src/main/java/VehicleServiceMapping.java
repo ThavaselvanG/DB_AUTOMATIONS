@@ -14,8 +14,10 @@ import java.util.stream.Collectors;
 
 
 public class VehicleServiceMapping {
-    private static final String CSV_FILE_PATH = "C:\\Users\\z042349\\Downloads\\service_log_j12_24.csv";
-    private static final String OUTPUT_FILE_PATH = "C:\\Users\\z042349\\Downloads\\service_log_j12_24.txt";
+    private static String pathName="C:\\Users\\z042349\\Downloads\\";
+    private static String fileName="prod_j12_24";
+    private static final String CSV_FILE_PATH =  pathName+fileName+".csv";
+    private static final String OUTPUT_FILE_PATH =  pathName+fileName+".txt";
     private static final String INSERT_QUERY = "INSERT INTO public.vehicle_service_mapping(id, model_code, service_id, service_name, service_type, ivi_type) VALUES";
     private static final String TAG = "VehicleServiceMapping- ";
 

@@ -11,9 +11,10 @@ import java.nio.file.Paths;
 
 public class SVTColorMapping {
 
-
-    private static final String CSV_FILE_PATH = "C:\\Users\\z042349\\Downloads\\svt color.csv";
-    private static final String OUTPUT_FILE_PATH = "C:\\Users\\z042349\\Downloads\\svt_color.txt";
+     private static String pathName="C:\\Users\\z042349\\Downloads\\";
+     private static String fileName="svt color";
+    private static final String CSV_FILE_PATH =  pathName+fileName+".csv";
+    private static final String OUTPUT_FILE_PATH =  pathName+fileName+".txt";
     private static final String INSERT_QUERY = "INSERT INTO public.model_color_mapping_multilanguage(id, languages, color_name, translation) VALUES";
     private static final String TAG = "SVTColorMapping- ";
 
