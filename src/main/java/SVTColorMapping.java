@@ -9,12 +9,13 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+public class SVTColorMapping {
 
-public class VehicleServiceMapping {
-    private static final String CSV_FILE_PATH = "C:\\Users\\z042349\\Downloads\\service_log_j12_24.csv";
-    private static final String OUTPUT_FILE_PATH = "C:\\Users\\z042349\\Downloads\\service_log_j12_24.txt";
-    private static final String INSERT_QUERY = "INSERT INTO public.vehicle_service_mapping(id, model_code, service_id, service_name, service_type, ivi_type) VALUES";
-    private static final String TAG = "VehicleServiceMapping- ";
+
+    private static final String CSV_FILE_PATH = "C:\\Users\\z042349\\Downloads\\svt color.csv";
+    private static final String OUTPUT_FILE_PATH = "C:\\Users\\z042349\\Downloads\\svt_color.txt";
+    private static final String INSERT_QUERY = "INSERT INTO public.model_color_mapping_multilanguage(id, languages, color_name, translation) VALUES";
+    private static final String TAG = "SVTColorMapping- ";
 
     public static void main(String[] args) throws IOException {
         int count = 0;
@@ -28,12 +29,10 @@ public class VehicleServiceMapping {
                     continue;
                 }
                 String id = csvRecord.get(0);
-                String modelCode = csvRecord.get(1);
-                String serviceId = csvRecord.get(2);
-                String serviceName = csvRecord.get(3);
-                String serviceType = csvRecord.get(4);
-                String iviType = csvRecord.get(5);
-                stringBuilder.append("(").append(id).append(",'").append(modelCode).append("','").append(serviceId).append("','").append(serviceName).append("','").append(serviceType).append("','").append(iviType).append("'),\n");
+                String languages = csvRecord.get(1);
+                String color_name = csvRecord.get(2);
+                String translation = csvRecord.get(3);
+                 stringBuilder.append("(").append(id).append(",'").append(languages).append("','").append(color_name).append("','").append(translation).append("'),\n");
             }
 
             try {
