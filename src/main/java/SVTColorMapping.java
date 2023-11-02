@@ -32,7 +32,7 @@ public class SVTColorMapping {
                 String languages = csvRecord.get(1);
                 String color_name = csvRecord.get(2);
                 String translation = csvRecord.get(3);
-                 stringBuilder.append("(").append(id).append(",'").append(languages).append("','").append(color_name).append("','").append(translation).append("'),\n");
+                stringBuilder.append("(").append(id).append(",'").append(languages).append("','").append(color_name).append("','").append(translation).append("'),\n");
             }
 
             try {
