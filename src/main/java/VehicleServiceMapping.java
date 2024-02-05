@@ -15,14 +15,18 @@ import java.util.stream.Collectors;
 
 public class VehicleServiceMapping {
     private static String pathName="C:\\Users\\z042349\\Downloads\\";
-    private static String fileName="prod_j12_24";
+    private static String fileName="int_j12_2";
     private static final String CSV_FILE_PATH =  pathName+fileName+".csv";
     private static final String OUTPUT_FILE_PATH =  pathName+fileName+".txt";
     private static final String INSERT_QUERY = "INSERT INTO public.vehicle_service_mapping(id, model_code, service_id, service_name, service_type, ivi_type) VALUES";
     private static final String TAG = "VehicleServiceMapping- ";
 
+    //must add details mapping  and action mapping
+
+
     public static void main(String[] args) throws IOException {
         int count = 0;
+        System.out.println(Math.round(27/10.0) * 10);
         StringBuilder stringBuilder = new StringBuilder(INSERT_QUERY);
         try (Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH));
              CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);) {
