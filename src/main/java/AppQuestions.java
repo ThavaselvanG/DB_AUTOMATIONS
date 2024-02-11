@@ -9,15 +9,16 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-
-public class VehicleImageMapping {
+public class AppQuestions {
     private static String pathName="C:\\Users\\z042349\\Downloads\\";
-    private static String fileName="data-1707414539349";
+    private static String fileName="app_questions";
     private static final String CSV_FILE_PATH =  pathName+fileName+".csv";
     private static final String OUTPUT_FILE_PATH =  pathName+fileName+".txt";
-    private static final String INSERT_QUERY = " INSERT INTO public.vehicle_image_mapping(\n" +
-            "\tid, active, color_code, color_name, model_code, picture_url, vehicle_type) VALUES";
-    private static final String TAG = "vehicle_image_mapping- ";
+    private static final String INSERT_QUERY = "INSERT INTO public.app_questions(id, created_at, updated_at, active, question, brand, language, region) VALUES ";
+    private static final String TAG = "VehicleServiceMapping- ";
+
+    //must add details mapping  and action mapping
+
 
     public static void main(String[] args) throws IOException {
         int count = 0;
@@ -25,25 +26,23 @@ public class VehicleImageMapping {
         try (Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH));
              CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);) {
             for (CSVRecord csvRecord : csvParser) {
-                if (count == 0) {
+               /* if (count == 0) {
                     count++;
                     //its taking header title also
                     continue;
-                }
+                }*/
+                //question, brand, language, region
                 String id = csvRecord.get(0);
-                String active = csvRecord.get(1);
-                String color_code = csvRecord.get(2);
-                String color_name = csvRecord.get(3);
-                if (color_name.equals(""))
-                    color_name=null;
-                String model_code = csvRecord.get(4);
-                String picture_url = csvRecord.get(5);
-                String vehicle_type = csvRecord.get(6);
-                if (vehicle_type.equals(""))
-                    vehicle_type=null;
-                stringBuilder.append("(").append(id).append(",'").append(active).append("','").append(color_code).append("','")
-                        .append(color_name).append("','").append(model_code).append("','"). append(picture_url).append("','")
-                        .append(vehicle_type).append("'),\n");
+                String created_at = csvRecord.get(1);
+                String updated_at = csvRecord.get(2);
+                String active = csvRecord.get(3);
+                String question = csvRecord.get(4);
+                String brand = csvRecord.get(5);
+                String language = csvRecord.get(6);
+                String region = csvRecord.get(7);
+                stringBuilder.append("(").append(id).append(",'").append(created_at).append("','").append(updated_at).append("','")
+                        .append(active).append("','").append(question).append("','").append(brand).append("','")
+                        .append(language).append("','").append(region).append("'),\n");
             }
 
             try {

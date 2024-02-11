@@ -26,8 +26,7 @@ public class VehicleServiceMapping {
 
     public static void main(String[] args) throws IOException {
         int count = 0;
-        System.out.println(Math.round(27/10.0) * 10);
-        StringBuilder stringBuilder = new StringBuilder(INSERT_QUERY);
+         StringBuilder stringBuilder = new StringBuilder(INSERT_QUERY);
         try (Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH));
              CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);) {
             for (CSVRecord csvRecord : csvParser) {
