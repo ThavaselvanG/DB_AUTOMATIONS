@@ -8,12 +8,9 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 
-public class VehicleServiceMapping {
+public class VehicleServiceMappingJP {
     private static String pathName="C:\\Users\\z042349\\Downloads\\";
     private static String fileName="Book3";
     private static final String CSV_FILE_PATH =  pathName+fileName+".csv";
@@ -37,7 +34,13 @@ public class VehicleServiceMapping {
                 String serviceName = csvRecord.get(3);
                 String serviceType = csvRecord.get(4);
                 String iviType = csvRecord.get(5);
-                stringBuilder.append("(").append(id).append(",'").append(modelCode).append("','").append(serviceId).append("','").append(serviceName).append("','").append(serviceType).append("','").append(iviType).append("'),\n");
+                stringBuilder.append("(").
+                        append(id).append(",'").
+                        append(iviType).append("','").
+                        append(modelCode).append("','").
+                        append(serviceId).append("','").
+                        append(serviceName).append("','").
+                        append(serviceType).append("'),\n");
             }
 
             try {

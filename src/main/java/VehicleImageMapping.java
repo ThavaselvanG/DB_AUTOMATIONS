@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 
 public class VehicleImageMapping {
     private static String pathName="C:\\Users\\z042349\\Downloads\\";
-    private static String fileName="data-1707414539349";
+    private static String fileName="data-1708104726570";
     private static final String CSV_FILE_PATH =  pathName+fileName+".csv";
     private static final String OUTPUT_FILE_PATH =  pathName+fileName+".txt";
     private static final String INSERT_QUERY = " INSERT INTO public.vehicle_image_mapping(\n" +
@@ -25,11 +25,11 @@ public class VehicleImageMapping {
         try (Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH));
              CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);) {
             for (CSVRecord csvRecord : csvParser) {
-                if (count == 0) {
+               /* if (count == 0) {
                     count++;
                     //its taking header title also
                     continue;
-                }
+                }*/
                 String id = csvRecord.get(0);
                 String active = csvRecord.get(1);
                 String color_code = csvRecord.get(2);

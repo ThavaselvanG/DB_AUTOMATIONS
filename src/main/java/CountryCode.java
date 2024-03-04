@@ -8,17 +8,14 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 
-public class VehicleServiceMapping {
+public class CountryCode {
     private static String pathName="C:\\Users\\z042349\\Downloads\\";
     private static String fileName="Book3";
     private static final String CSV_FILE_PATH =  pathName+fileName+".csv";
     private static final String OUTPUT_FILE_PATH =  pathName+fileName+".txt";
-    private static final String INSERT_QUERY = "INSERT INTO public.vehicle_service_mapping(id, model_code, service_id, service_name, service_type, ivi_type) VALUES";
+    private static final String INSERT_QUERY = "INSERT INTO public.country_code(id, code, name, country_code) VALUES";
     private static final String TAG = "VehicleServiceMapping- ";
 
     //must add details mapping  and action mapping
@@ -32,12 +29,11 @@ public class VehicleServiceMapping {
             for (CSVRecord csvRecord : csvParser) {
 
                 String id = csvRecord.get(0);
-                String modelCode = csvRecord.get(1);
-                String serviceId = csvRecord.get(2);
-                String serviceName = csvRecord.get(3);
-                String serviceType = csvRecord.get(4);
-                String iviType = csvRecord.get(5);
-                stringBuilder.append("(").append(id).append(",'").append(modelCode).append("','").append(serviceId).append("','").append(serviceName).append("','").append(serviceType).append("','").append(iviType).append("'),\n");
+                String code = csvRecord.get(1);
+                String name = csvRecord.get(2);
+                String country_code = csvRecord.get(3);
+
+                stringBuilder.append("(").append(id).append(",'").append(code).append("','").append(name).append("','").append(country_code).append("'),\n");
             }
 
             try {

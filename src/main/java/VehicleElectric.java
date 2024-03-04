@@ -8,18 +8,17 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 
-public class VehicleServiceMapping {
+public class VehicleElectric {
     private static String pathName="C:\\Users\\z042349\\Downloads\\";
-    private static String fileName="Book3";
+    private static String fileName="consumption";
     private static final String CSV_FILE_PATH =  pathName+fileName+".csv";
     private static final String OUTPUT_FILE_PATH =  pathName+fileName+".txt";
-    private static final String INSERT_QUERY = "INSERT INTO public.vehicle_service_mapping(id, model_code, service_id, service_name, service_type, ivi_type) VALUES";
-    private static final String TAG = "VehicleServiceMapping- ";
+    private static final String INSERT_QUERY = "INSERT INTO public.electric_consumption(\n" +
+            "\tid, consumption, slope, speed)\n" +
+            "\tVALUES";
+    private static final String TAG = "consumption- ";
 
     //must add details mapping  and action mapping
 
@@ -30,14 +29,19 @@ public class VehicleServiceMapping {
         try (Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH));
              CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);) {
             for (CSVRecord csvRecord : csvParser) {
-
+                if (count == 0) {
+                    count++;
+                    //its taking header title also
+                    continue;
+                }
                 String id = csvRecord.get(0);
                 String modelCode = csvRecord.get(1);
                 String serviceId = csvRecord.get(2);
                 String serviceName = csvRecord.get(3);
                 String serviceType = csvRecord.get(4);
-                String iviType = csvRecord.get(5);
-                stringBuilder.append("(").append(id).append(",'").append(modelCode).append("','").append(serviceId).append("','").append(serviceName).append("','").append(serviceType).append("','").append(iviType).append("'),\n");
+
+                stringBuilder.append("(").append(id).append(",'").append("','").append(serviceName).append("','")
+                        .append(serviceType).append("','").append(serviceType).append("'),\n");
             }
 
             try {
