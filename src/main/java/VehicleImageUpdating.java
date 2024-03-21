@@ -8,40 +8,39 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 
-public class VehicleServiceMapping {
+public class VehicleImageUpdating {
     private static String pathName="C:\\Users\\z042349\\Downloads\\";
-    private static String fileName="F82-XB_5";
+    private static String fileName="f16_2";
     private static final String CSV_FILE_PATH =  pathName+fileName+".csv";
     private static final String OUTPUT_FILE_PATH =  pathName+fileName+".txt";
-    private static final String INSERT_QUERY = "INSERT INTO public.vehicle_service_mapping(id, model_code, service_id, service_name, service_type, ivi_type) VALUES";
-    private static final String TAG = "VehicleServiceMapping- ";
+    private static final String INSERT_QUERY = " UPDATE public.vehicle_image_mapping ";
+  //  private static final String WHERE_CAUSE = " WHERE color_code ";
 
-    //must add details mapping  and action mapping
-
-
+    private static final String TAG = "vehicle_image_mapping- ";
+//color_code	color_name	model_code	vehicle_type	picture url  excel header format
     public static void main(String[] args) throws IOException {
         int count = 0;
-         StringBuilder stringBuilder = new StringBuilder(INSERT_QUERY);
+        StringBuilder stringBuilder = new StringBuilder(INSERT_QUERY);
         try (Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH));
              CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);) {
             for (CSVRecord csvRecord : csvParser) {
-                if (count == 0) {
+                 if (count == 0) {
                     count++;
-                    //its taking header title also so removing header
+                    //its taking header title also
                     continue;
                 }
-                String id = csvRecord.get(0);
-                String modelCode = csvRecord.get(1);
-                String serviceId = csvRecord.get(2);
-                String serviceName = csvRecord.get(3);
-                String serviceType = csvRecord.get(4);
-                String iviType = csvRecord.get(5);
-                stringBuilder.append("(").append(id).append(",'").append(modelCode).append("','").append(serviceId).append("','").append(serviceName).append("','").append(serviceType).append("','").append(iviType).append("'),\n");
+                String colorCode = csvRecord.get(0);
+                String colorName = csvRecord.get(1);
+                String modelCode = csvRecord.get(2);
+                String vehicleType = csvRecord.get(3);
+                String pictureUrl = csvRecord.get(4);
+                stringBuilder.append("SET picture='"+pictureUrl+"'");
+                //stringBuilder.append("WHERE color_code,color_name,model_code,vehicleType IN('"+colorCode+colorName+modelCode+vehicleType)";
+                stringBuilder.append(" WHERE color_code='"+colorCode+"' and color_name='"+colorName+"' and model_code='"+
+                        modelCode+ "' and vehicle_type='"+vehicleType+"'),\n");
+
             }
 
             try {
